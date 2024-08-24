@@ -1,11 +1,25 @@
 import "./App.css";
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/users')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.error("error fetching data:", error));
+  }, []);
 
   return (
-    <>
-     <h1> This is my React App :)</h1>
-    </>
+    <div className="App">
+      <h1>Users</h1>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
