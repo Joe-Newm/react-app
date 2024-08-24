@@ -1,7 +1,9 @@
-const express = require("express");
+import express from "express";
+
+
 const app = express();
 
-// test data
+// user test data
 const users = [
     {id:1, name: "john doe", age: 30},
     {id:2, name: "jane doe", age: 25}
