@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function UserCard() {
+export default function UserCard(props) {
   return (
-    <div>UserCard</div>
+    <div className=" border-2 w-1/3 h-20 flex justify-center items-center">
+        <h1>I'm a {props.fruit}</h1>
+    </div>
   )
 }
