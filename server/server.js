@@ -4,9 +4,9 @@ import cors from "cors";
 import { fileURLToPath } from 'url';
 
 // Create __dirname equivalent
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const clientDistPath = path.join(__dirname, '../client/dist');
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// const clientDistPath = path.join(__dirname, '../client/dist');
 
 // create express app
 const app = express();
@@ -14,10 +14,8 @@ const app = express();
 //middleware
 app.use(cors());
 
-
 // serve static files from frontend
 // app.use(express.static(clientDistPath));
-
 
 // API route to get users
 app.get('/api/users', (req, res) => {

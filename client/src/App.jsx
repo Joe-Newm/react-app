@@ -30,9 +30,9 @@ function App() {
   return (
     <>
       <Nav/>
-      <div className="flex">
+      <div className="flex w-full gap-10">
         <Sidebar/>
-          <div className="flex flex-col items-center"> 
+          <div className="flex flex-col w-full"> 
             {
               array.map((fruit) => (
                 <UserCard fruit={fruit} />

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Sidebar() {
   return (
-    <div>
+    <div className="w-1/4 border-2">
         <p>Sidebar</p>
     </div>
   )
