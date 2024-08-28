@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Nav from "./components/Nav"
 import UserCard from "./components/UserCard"
+import Sidebar from "./components/Sidebar"
 import './App.css'
 
 
@@ -8,7 +9,7 @@ function App() {
   const [array, setArray] = useState([]);
 
   const fetchAPI = async () => {
-    const url = "api/users"
+    const url = "api/users";
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -17,7 +18,7 @@ function App() {
       const data = await response.json();
       console.log(data);
       setArray(data.fruits)
-    } catch {
+    } catch(error) {
       console.error(error.message)
     }
   };
@@ -29,13 +30,16 @@ function App() {
   return (
     <>
       <Nav/>
-        <div className="flex flex-col items-center"> 
-          {
-            array.map((fruit) => (
-              <UserCard fruit={fruit} />
-            ))
-          }     
-       </div>
+      <div className="flex">
+        <Sidebar/>
+          <div className="flex flex-col items-center"> 
+            {
+              array.map((fruit) => (
+                <UserCard fruit={fruit} />
+              ))
+            }     
+        </div>
+      </div>
     </>
   )
 }
