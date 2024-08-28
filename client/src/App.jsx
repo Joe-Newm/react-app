@@ -8,7 +8,7 @@ function App() {
   const [array, setArray] = useState([]);
 
   const fetchAPI = async () => {
-    const url = "http://localhost:8080/api/users"
+    const url = "api/users"
     try {
       const response = await fetch(url);
       if (!response.ok) {
