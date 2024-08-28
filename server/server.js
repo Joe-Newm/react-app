@@ -19,7 +19,15 @@ app.use(cors());
 
 // API route to get users
 app.get('/api/users', (req, res) => {
-    res.json({fruits: ["apple", "poo poo", "doo doo"]});
+    const notes = [
+        {id: 1, name: "note 1"},
+        {id: 2, name: "note 2"},
+        {id: 3, name: "note 3"},
+        {id: 4, name: "note 4"},
+        {id: 5, name: "note 5"},
+        {id: 6, name: "note 6"},
+    ]
+    res.json({notes});
 });
 
 // app.get('*', (req, res) => {
