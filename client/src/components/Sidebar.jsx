@@ -24,7 +24,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <div className="w-1/4 border h-svh">
+    <div className="w-1/4 bg-[#1C1E28] border-r border-r-black h-svh">
         <div className="flex flex-col w-full "> 
             {
               array.map((note) => (
