@@ -2,11 +2,11 @@ import {useState, useEffect} from 'react'
 import UserCard from "./UserCard"
 
 function Sidebar({onNoteClick, selectedNote}) {
-    const [array, setArray] = useState([]);
+  const [array, setArray] = useState([]);
     
 
   const fetchAPI = async () => {
-    const url = "api/users";
+    const url = "http://localhost:8080/api/notes";
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -29,7 +29,7 @@ function Sidebar({onNoteClick, selectedNote}) {
         <div className="flex flex-col "> 
             {
               array.map((note, index) => (
-                <UserCard key={note.id} noteName={note.name} onClick={() => onNoteClick(note)} isSelected={selectedNote && selectedNote.id === note.id}/>
+                <UserCard key={note.ID} noteName={note.name} onClick={() => onNoteClick(note)} isSelected={selectedNote && selectedNote.ID === note.ID}/>
               ))
             }     
         </div>
