@@ -6,13 +6,6 @@ sqlite3.verbose();
 import { fileURLToPath } from 'url';
 
 // Create __dirname equivalent
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-// const clientDistPath = path.join(__dirname, '../client/dist');
-
-// setup db
-
-// Create __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dbPath = path.resolve(__dirname, './quote.db');
@@ -45,6 +38,21 @@ app.get('/api/notes', (req, res) => {
         res.json({
             message: 'success',
             notes: rows
+        });
+    });
+});
+
+app.post('/api/notes', (req, res) => {
+    const { name, content } = req.body;
+    const sql = `INSERT INTO quote (name, content) VALUES (?, ?)`;
+    const params = [name, content];
+    db.run(sql, params, function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.json({
+            message: 'success',
+            data: { id: this.lastID, name, content }
         });
     });
 });
