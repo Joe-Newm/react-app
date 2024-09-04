@@ -1,6 +1,7 @@
 function Nav() {
   return (
-    <nav className="h-14 bg-[#1C1E28] border-b border-b-black flex items-center justify-center px-5">
+    <nav className="h-14 bg-[#1C1E28] border-b border-b-black flex items-center justify-center px-5 justify-between">
+        <button className="border p-2">New</button>
         <h1 className="text-xl">Backend Notes App Test</h1>
     </nav>
   )
