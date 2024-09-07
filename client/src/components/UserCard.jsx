@@ -10,4 +10,4 @@ export default function UserCard({noteName, onClick, isSelected}) {
         <h1>{noteName}</h1>
     </a>
   )
-}
+}  

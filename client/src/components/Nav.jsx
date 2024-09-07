@@ -7,5 +7,5 @@ function Nav({onNewClick}) {
   )
 }
 export default Nav
-       
+        
 

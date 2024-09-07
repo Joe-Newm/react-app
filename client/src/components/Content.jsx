@@ -9,7 +9,10 @@ function Content({note}) {
           <p>{note.content}</p>
         </>
       ) : (
-        <p>Select a note to display content</p>
+          <form className="flex">
+            <textarea className="text-3xl mb-5 font-bold" placeholder="Title here..."></textarea>
+            <textarea placeholder="content here..."></textarea>
+          </form>
       )}
     </div>
   )
