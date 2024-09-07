@@ -12,9 +12,13 @@ const handleNoteClick = (note) => {
   setSelectedNote(note);
 }
 
+function handleNewClick() {
+  setSelectedNote(null);
+  }
+
   return (
     <>
-      <Nav/>
+      <Nav onNewClick={handleNewClick}/>
       <div className="flex w-full">
         <Sidebar onNoteClick={handleNoteClick} selectedNote={selectedNote}/>
         <Content note={selectedNote}/> 
