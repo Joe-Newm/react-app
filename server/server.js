@@ -57,6 +57,7 @@ app.post('/api/notes', (req, res) => {
     });
 });
 
+
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(clientDistPath, 'index.html'));
 // })
