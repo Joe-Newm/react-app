@@ -37,7 +37,7 @@ function Content({ note }) {
             placeholder="content here..."
           ></textarea>
           <button>Submit</button>
-          <button></button>
+
         </form>
       )}
     </div>
