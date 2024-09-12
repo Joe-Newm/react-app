@@ -7,6 +7,7 @@ import './App.css'
 
 function App() {
   const [selectedNote, setSelectedNote] = useState(null);
+  const [array, setArray] = useState([]);
 
   const handleNoteClick = (note) => {
     setSelectedNote(note);
@@ -21,8 +22,8 @@ function App() {
     <>
       <Nav onNewClick={handleNewClick} />
       <div className="flex w-full">
-        <Sidebar onNoteClick={handleNoteClick} selectedNote={selectedNote} />
-        <Content note={selectedNote} />
+        <Sidebar array={array} setArray={setArray} onNoteClick={handleNoteClick} selectedNote={selectedNote} />
+        <Content array={array} setArray={setArray} note={selectedNote} />
       </div>
     </>
   )

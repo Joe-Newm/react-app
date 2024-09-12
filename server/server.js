@@ -52,8 +52,7 @@ app.post('/api/notes', (req, res) => {
             return res.status(400).json({ error: err.message });
         }
         res.json({
-            message: 'success',
-            data: { id: this.lastID, name, content }
+            data: { ID: this.lastID, name, content }
         });
     });
 });
