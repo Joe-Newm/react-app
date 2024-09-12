@@ -20,9 +20,21 @@ function Sidebar({ onNoteClick, selectedNote }) {
     }
   };
 
-  const handleDel = (note) => {
-    console.log(note)
-  }
+  const handleDel = async (note) => {
+    const url = `http://localhost:8080/api/notes-del/${note.ID}`
+    try {
+      const response = await fetch(url, { method: 'DELETE', });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      // remove deleted note from state
+      setArray((prevArray) => prevArray.filter(n => n.ID !== note.ID))
+      console.log(`note with id: ${note.ID} deleted successfully`)
+
+    } catch (error) {
+      console.error(error.message)
+    }
+  };
 
   useEffect(() => {
     fetchAPI();

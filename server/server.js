@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dbPath = path.resolve(__dirname, './quote.db');
 
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE,(err)=> {
-    if(err) return console.error(err);
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+    if (err) return console.error(err);
     else {
         console.log('database connected')
     }
@@ -42,6 +42,7 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
+// add new created notes to database
 app.post('/api/notes', (req, res) => {
     const { name, content } = req.body;
     const sql = `INSERT INTO quote (name, content) VALUES (?, ?)`;
@@ -57,10 +58,25 @@ app.post('/api/notes', (req, res) => {
     });
 });
 
+// del notes from database
+app.delete('/api/notes-del/:id', (req, res) => {
+    const noteId = req.params.id;
+    // Run the DELETE SQL query to remove the note by ID
+    const sql = `DELETE FROM quote WHERE ID = ?`;  // Assuming 'id' is the column name
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(clientDistPath, 'index.html'));
-// })
+    db.run(sql, [noteId], function(err) {
+        if (err) {
+            return res.status(500).json({ message: 'Error deleting note', error: err.message });
+        }
+
+        if (this.changes === 0) {
+            return res.status(404).json({ message: 'Note not found' });
+        }
+
+        return res.status(200).json({ message: 'Note deleted successfully' });
+    });
+})
+
 
 app.listen(8080, () => {
     console.log("server running on port 8080")

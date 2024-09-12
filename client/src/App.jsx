@@ -6,22 +6,23 @@ import './App.css'
 
 
 function App() {
-const [selectedNote, setSelectedNote] = useState(null);
+  const [selectedNote, setSelectedNote] = useState(null);
 
-const handleNoteClick = (note) => {
-  setSelectedNote(note);
-}
+  const handleNoteClick = (note) => {
+    setSelectedNote(note);
+  }
 
-function handleNewClick() {
-  setSelectedNote(null);
+
+  function handleNewClick() {
+    setSelectedNote(null);
   }
 
   return (
     <>
-      <Nav onNewClick={handleNewClick}/>
+      <Nav onNewClick={handleNewClick} />
       <div className="flex w-full">
-        <Sidebar onNoteClick={handleNoteClick} selectedNote={selectedNote}/>
-        <Content note={selectedNote}/> 
+        <Sidebar onNoteClick={handleNoteClick} selectedNote={selectedNote} />
+        <Content note={selectedNote} />
       </div>
     </>
   )
