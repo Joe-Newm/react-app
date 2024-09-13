@@ -35,14 +35,14 @@ function Content({ note, setArray, array }) {
           <textarea
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="text-3xl mb-5 font-bold break-words"
+            className="text-3xl mb-5 font-bold break-words w-full"
             placeholder="Title here..."
           ></textarea>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Content here..."
-            className="break-words"
+            className="break-words w-full h-72"
           ></textarea>
           <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
             Submit
