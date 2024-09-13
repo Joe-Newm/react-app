@@ -8,6 +8,9 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:8080',
     },
+    watch: {
+      usePolling: true,
+    },
   },
   resolve: {
     alias: {
