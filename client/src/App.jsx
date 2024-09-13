@@ -21,9 +21,13 @@ function App() {
   return (
     <>
       <Nav onNewClick={handleNewClick} />
-      <div className="flex w-full">
-        <Sidebar array={array} setArray={setArray} onNoteClick={handleNoteClick} selectedNote={selectedNote} />
-        <Content array={array} setArray={setArray} note={selectedNote} />
+      <div className="flex max-w-ful h-screen">
+        <div className="w-1/5">
+          <Sidebar array={array} setArray={setArray} onNoteClick={handleNoteClick} selectedNote={selectedNote} />
+        </div>
+        <div className="w-4/5">
+          <Content array={array} setArray={setArray} note={selectedNote} />
+        </div>
       </div>
     </>
   )

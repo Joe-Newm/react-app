@@ -26,25 +26,27 @@ function Content({ note, setArray, array }) {
   return (
     <div className="p-10">
       {note ? (
-        <>
-          <h1 className="text-3xl mb-5 font-bold">{note.name}</h1>
-          <p>{note.content}</p>
-        </>
+        <div>
+          <h1 className="text-3xl mb-5 font-bold break-words">{note.name}</h1>
+          <p className="break-words">{note.content}</p>
+        </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col max-w-full">
           <textarea
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="text-3xl mb-5 font-bold"
+            className="text-3xl mb-5 font-bold break-words"
             placeholder="Title here..."
           ></textarea>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="content here..."
+            placeholder="Content here..."
+            className="break-words"
           ></textarea>
-          <button>Submit</button>
-
+          <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
+            Submit
+          </button>
         </form>
       )}
     </div>
