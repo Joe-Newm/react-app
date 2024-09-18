@@ -25,6 +25,8 @@ function Content({ note, setSelectedNote, setArray }) {
     setArray((prevArray) => [...prevArray, data.data]);
     // console.log(array)
     setSelectedNote(data.data)
+    setName("")
+    setContent("")
   };
 
   return (
