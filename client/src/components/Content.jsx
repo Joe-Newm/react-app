@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 
-function Content({ note, setArray, array }) {
+function Content({ note, setSelectedNote, setArray }) {
+
+  // creating notes states
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
 
+  // when submitting a new note
+  const handleSubmit = async (event) => {
+    // fetch('http://localhost:8080/send-data', { method: 'POST' })
+    event.preventDefault();
+    const response = await fetch("http://localhost:8080/api/notes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, content }),
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to submit: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data)
+    setArray((prevArray) => [...prevArray, data.data]);
+    // console.log(array)
+    setSelectedNote(data.data)
+  };
 
   return (
     <div className="p-10">
@@ -13,7 +35,7 @@ function Content({ note, setArray, array }) {
           <p className="break-words">{note.content}</p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="flex flex-col max-w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col max-w-full">
           <textarea
             value={name}
             onChange={(e) => setName(e.target.value)}
