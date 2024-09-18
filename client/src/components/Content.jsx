@@ -4,25 +4,6 @@ function Content({ note, setArray, array }) {
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = async (event) => {
-    // fetch('http://localhost:8080/send-data', { method: 'POST' })
-    event.preventDefault();
-    const response = await fetch("http://localhost:8080/api/notes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, content }),
-    })
-
-    if (!response.ok) {
-      throw new Error(`Failed to submit: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log(data)
-    setArray((prevArray) => [...prevArray, data.data]);
-    console.log(array)
-    setContent(data)
-  };
 
   return (
     <div className="p-10">
@@ -32,7 +13,7 @@ function Content({ note, setArray, array }) {
           <p className="break-words">{note.content}</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col max-w-full">
+        <form onSubmit={onSubmit} className="flex flex-col max-w-full">
           <textarea
             value={name}
             onChange={(e) => setName(e.target.value)}
