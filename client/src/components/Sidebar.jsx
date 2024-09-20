@@ -42,7 +42,7 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
   }, []);
 
   return (
-    <div className=" bg-[#1C1E28] border-r border-r-black h-svh">
+    <div className=" bg-[#1C1E28] border-r border-r-black min-h-screen ">
       <div className="flex flex-col ">
         {
 

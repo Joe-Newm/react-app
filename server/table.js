@@ -8,8 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const dbPath = path.resolve(__dirname, './quote.db');
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE,(err)=> {
-    if(err) return console.error(err);
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) return console.error(err);
     else {
         console.log('database connected')
     }

@@ -44,6 +44,7 @@ app.get('/api/notes', (req, res) => {
 
 // add new created notes to database
 app.post('/api/notes', (req, res) => {
+    console.log(req.body);
     const { name, content } = req.body;
     const sql = `INSERT INTO quote (name, content) VALUES (?, ?)`;
     const params = [name, content];
