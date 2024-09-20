@@ -34,5 +34,3 @@ function Nav({ setArray, array, setSelectedNote }) {
   )
 }
 export default Nav
-
-

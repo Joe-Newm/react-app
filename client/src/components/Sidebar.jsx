@@ -15,7 +15,7 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
       }
       const data = await response.json();
       console.log(data);
-      setArray(data.notes || []);
+      setArray((data.notes || []).reverse());
     } catch (error) {
       console.error(error.message)
     }
