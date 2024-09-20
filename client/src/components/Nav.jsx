@@ -10,7 +10,7 @@ function Nav({ setArray, array, setSelectedNote }) {
     const response = await fetch("http://localhost:8080/api/notes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "asdfs", content: "asdf" }),
+      body: JSON.stringify({ name: "", content: "" }),
     })
 
     if (!response.ok) {
@@ -19,7 +19,7 @@ function Nav({ setArray, array, setSelectedNote }) {
 
     const data = await response.json();
     console.log(data)
-    setArray((prevArray) => [...prevArray, data.data]);
+    setArray((prevArray) => [data.data, ...prevArray]);
     // console.log(array)
     setSelectedNote(data.data)
     setName("")
