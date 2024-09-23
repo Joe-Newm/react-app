@@ -19,7 +19,6 @@ function App() {
     setSelectedNote(null);
   }
 
-
   return (
     <>
       <Nav setSelectedNote={setSelectedNote} onNewClick={handleNewClick} setArray={setArray} />

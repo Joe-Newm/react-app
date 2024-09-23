@@ -2,8 +2,6 @@ import { useState } from "react";
 
 function Nav({ setArray, array, setSelectedNote }) {
   // creating notes states
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
 
   const onNew = async () => {
     //event.preventDefault();
@@ -22,8 +20,6 @@ function Nav({ setArray, array, setSelectedNote }) {
     setArray((prevArray) => [data.data, ...prevArray]);
     // console.log(array)
     setSelectedNote(data.data)
-    setName("")
-    setContent("")
   }
 
   return (

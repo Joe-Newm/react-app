@@ -77,6 +77,30 @@ app.delete('/api/notes-del/:id', (req, res) => {
     });
 })
 
+// Update an existing note
+app.put('/api/notes/:id', (req, res) => {
+    const { id } = req.params; // Extract the ID from the request URL
+    const { name, content } = req.body; // Extract name and content from the request body
+
+    const sql = `UPDATE quote SET name = ?, content = ? WHERE ID = ?`;
+    const params = [name, content, id];
+
+    db.run(sql, params, function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+
+        // Check if any row was updated
+        if (this.changes === 0) {
+            return res.status(404).json({ error: "Note not found" });
+        }
+
+        // Respond with the updated note data
+        res.json({
+            data: { ID: id, name, content }
+        });
+    });
+});
 
 app.listen(8080, () => {
     console.log("server running on port 8080")

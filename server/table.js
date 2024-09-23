@@ -1,29 +1,30 @@
-import path from "path";
 import sqlite3 from 'sqlite3';
-sqlite3.verbose();
+import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Create __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const dbPath = path.resolve(__dirname, './quote.db');
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
-    if (err) return console.error(err);
-    else {
-        console.log('database connected')
-    }
-})
 
-// create table
-const createTableSql = `CREATE TABLE IF NOT EXISTS quote (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    content TEXT
-)`;
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 
-db.run(createTableSql);
+const createTable = () => {
+    const createTableSql = `CREATE TABLE IF NOT EXISTS quote (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        content TEXT
+    )`;
+    db.run(createTableSql);
+};
 
-db.run(`INSERT INTO quote (name, content) VALUES (?,?)`, ["this is my note tile", "this here be my content."]);
+const addQuote = (name, content) => {
+    return new Promise((resolve, reject) => {
+        const sql = `INSERT INTO quote (name, content) VALUES (?, ?)`;
+        db.run(sql, [name, content], function(err) {
+            if (err) reject(err);
+            else resolve(this.lastID);
+        });
+    });
+};
 
-db.close();
+export { createTable, addQuote };
