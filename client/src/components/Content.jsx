@@ -85,7 +85,7 @@ function Content({ note, setSelectedNote, array, setArray }) {
               setName(updatedName);
               setIsTyping(true);
             }}
-            className="text-3xl mb-5 font-bold break-words"
+            className="text-3xl mb-5 font-bold break-words bg-transparent"
             value={name}
           ></textarea>
 
@@ -95,7 +95,8 @@ function Content({ note, setSelectedNote, array, setArray }) {
               setContent(updatedContent);
               setIsTyping(true);
             }}
-            className="break-words h-96"
+            rows="25"
+            className="break-words bg-transparent"
             value={content}
           ></textarea>
         </div>
