@@ -85,6 +85,7 @@ function Content({ note, setSelectedNote, array, setArray }) {
               setName(updatedName);
               setIsTyping(true);
             }}
+            style={{ resize: "none" }}
             className="text-3xl mb-5 font-bold break-words bg-transparent"
             value={name}
           ></textarea>
@@ -95,6 +96,7 @@ function Content({ note, setSelectedNote, array, setArray }) {
               setContent(updatedContent);
               setIsTyping(true);
             }}
+            style={{ resize: "none" }}
             rows="25"
             className="break-words bg-transparent"
             value={content}
@@ -102,8 +104,9 @@ function Content({ note, setSelectedNote, array, setArray }) {
         </div>
       ) : (
         <div>Please select a note to display.</div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 export default Content;
