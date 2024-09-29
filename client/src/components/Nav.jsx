@@ -35,7 +35,7 @@ function Nav({ setArray, array, setSelectedNote, note, fetchNotes }) {
   return (
     <nav className="h-14 bg-[#1C1E28] border-b border-b-black flex items-center justify-center px-5 justify-between">
       <div className="flex gap-4">
-        <button onClick={() => onPin(note.pinned)} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600"><p className="filter brightness-[1000]">📌</p></button>
+        <button onClick={() => onPin(note.pinned)} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600 w-10"><p className="filter brightness-[1000]">📌</p></button>
         <button onClick={() => handleDel(note)} className="rounded-md bg-slate-700 p-2 hover:bg-slate-600 w-10" ><p className="filter brightness-[1000]">🗑️</p></button>
       </div>
       <h1 className="text-xl">Backend Notes App Test</h1>
