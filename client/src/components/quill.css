@@ -5,13 +5,33 @@
 
 .ql-toolbar {
   border: none !important;
-  background-color: gray;
+  background-color: #1C1E28;
+  border-bottom: 1px solid black !important;
+  border-top: 1px solid black !important;
+
   width: auto;
+  color: white;
 }
 
-.ql-toolbar button {
-  color: #333 !important;
+.ql-toolbar .ql-fill {
+  fill: white;
 }
+
+.ql-toolbar .ql-stroke {
+  stroke: white;
+}
+
+.ql-toolbar .ql-picker {
+  color: #fff;
+}
+
+.ql-toolbar .ql-picker-options {
+  color: black !important;
+  /* Ensure dropdown items have a black color */
+  background-color: white;
+  /* Optional: Set the background of the dropdown to white */
+}
+
 
 
 /* Customize the editor area */
