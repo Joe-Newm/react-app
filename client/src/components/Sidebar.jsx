@@ -27,7 +27,7 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray, setSelectedNote }
   return (
     <div className=" bg-[#1C1E28] border-r border-r-black min-h-screen ">
       <div className="h-14 border-b border-black content-center pl-4">
-        <button onClick={onNew} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600"><p className="filter brightness-[1000] text-white">✏️ </p></button>
+        <button onClick={onNew} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600 w-10"><p className="filter brightness-[1000] text-white">✏️ </p></button>
       </div>
       <div className="flex flex-col ">
         {array.some(note => note.pinned == 1) && (
