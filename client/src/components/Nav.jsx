@@ -3,24 +3,21 @@ import { useState } from "react";
 function Nav({ setArray, array, setSelectedNote, note, fetchNotes }) {
   // creating notes states
 
-  const onNew = async () => {
-    //event.preventDefault();
-    const response = await fetch("http://localhost:8080/api/notes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "", content: "", pinned: false }),
-    })
+  const handleDel = async (note) => {
+    const url = `http://localhost:8080/api/notes-del/${note.ID}`
+    try {
+      const response = await fetch(url, { method: 'DELETE', });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      // remove deleted note from state
+      setArray((prevArray) => prevArray.filter(n => n.ID !== note.ID))
+      console.log(`note with id: ${note.ID} deleted successfully`)
 
-    if (!response.ok) {
-      throw new Error(`Failed to submit: ${response.status}`);
+    } catch (error) {
+      console.error(error.message)
     }
-
-    const data = await response.json();
-    console.log(data)
-    setArray((prevArray) => [data.data, ...prevArray]);
-    // console.log(array)
-    setSelectedNote(data.data)
-  }
+  };
 
   const onPin = async (currentPinned) => {
     const newPinnedValue = !currentPinned;
@@ -38,8 +35,8 @@ function Nav({ setArray, array, setSelectedNote, note, fetchNotes }) {
   return (
     <nav className="h-14 bg-[#1C1E28] border-b border-b-black flex items-center justify-center px-5 justify-between">
       <div className="flex gap-4">
-        <button onClick={onNew} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600">New</button>
-        <button onClick={() => onPin(note.pinned)} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600">Pin</button>
+        <button onClick={() => onPin(note.pinned)} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600"><p className="filter brightness-[1000]">📌</p></button>
+        <button onClick={() => handleDel(note)} className="rounded-md bg-slate-700 p-2 hover:bg-slate-600 w-10" ><p className="filter brightness-[1000]">🗑️</p></button>
       </div>
       <h1 className="text-xl">Backend Notes App Test</h1>
     </nav>

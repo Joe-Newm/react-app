@@ -1,28 +1,34 @@
 import { useState, useEffect } from 'react'
 import UserCard from "./UserCard"
 
-function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
+function Sidebar({ onNoteClick, selectedNote, array, setArray, setSelectedNote }) {
 
+  const onNew = async () => {
+    //event.preventDefault();
+    const response = await fetch("http://localhost:8080/api/notes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "", content: "", pinned: false }),
+    })
 
-  const handleDel = async (note) => {
-    const url = `http://localhost:8080/api/notes-del/${note.ID}`
-    try {
-      const response = await fetch(url, { method: 'DELETE', });
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-      // remove deleted note from state
-      setArray((prevArray) => prevArray.filter(n => n.ID !== note.ID))
-      console.log(`note with id: ${note.ID} deleted successfully`)
-
-    } catch (error) {
-      console.error(error.message)
+    if (!response.ok) {
+      throw new Error(`Failed to submit: ${response.status}`);
     }
-  };
+
+    const data = await response.json();
+    console.log(data)
+    setArray((prevArray) => [data.data, ...prevArray]);
+    // console.log(array)
+    setSelectedNote(data.data)
+  }
+
 
 
   return (
     <div className=" bg-[#1C1E28] border-r border-r-black min-h-screen ">
+      <div className="h-14 border-b border-black content-center pl-4">
+        <button onClick={onNew} className="bg-slate-700 p-2 rounded-md hover:bg-slate-600"><p className="filter brightness-[1000] text-white">✏️ </p></button>
+      </div>
       <div className="flex flex-col ">
         {array.some(note => note.pinned == 1) && (
           <div className="h-10 bg-[#55697E] text-black font-bold text-center content-center border-b border-[#1C1E28]"><p className="filter brightness-0 text-black">📌 Pinned Notes</p></div>)}

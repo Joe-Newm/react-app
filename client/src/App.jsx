@@ -37,12 +37,12 @@ function App() {
 
   return (
     <>
-      <Nav fetchNotes={() => fetchAPI()} note={selectedNote} setSelectedNote={setSelectedNote} onNewClick={handleNewClick} setArray={setArray} />
       <div className="flex max-w-ful h-screen">
         <div className="w-1/5">
-          <Sidebar array={array} setArray={setArray} onNoteClick={handleNoteClick} selectedNote={selectedNote} />
+          <Sidebar array={array} setArray={setArray} onNoteClick={handleNoteClick} selectedNote={selectedNote} setSelectedNote={setSelectedNote} />
         </div>
         <div className="w-4/5">
+          <Nav fetchNotes={() => fetchAPI()} note={selectedNote} setSelectedNote={setSelectedNote} onNewClick={handleNewClick} setArray={setArray} />
           <Content fetchNotes={() => fetchAPI()} setArray={setArray} setSelectedNote={setSelectedNote} note={selectedNote} />
         </div>
       </div>
