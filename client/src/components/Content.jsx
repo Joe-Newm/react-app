@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Content({ note, setSelectedNote, array, setArray }) {
+function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
 
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
@@ -10,20 +10,6 @@ function Content({ note, setSelectedNote, array, setArray }) {
     console.log('Array updated in Sidebar:', array);
   }, [array]);
 
-  const fetchAPI = async () => {
-    const url = "http://localhost:8080/api/notes";
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log(data);
-      setArray((data.notes || []).reverse());
-    } catch (error) {
-      console.error(error.message)
-    }
-  };
 
 
   // Update state when the selected note changes
@@ -39,7 +25,7 @@ function Content({ note, setSelectedNote, array, setArray }) {
         const updatedNote = await response.json();
         // setSelectedNote(updatedNote.data);
         console.log("Updating note:", updatedNote.data);
-        fetchAPI();
+        fetchNotes();
 
       } else {
         console.error("Failed to update the note");
@@ -71,7 +57,7 @@ function Content({ note, setSelectedNote, array, setArray }) {
   }, [note]);
 
   useEffect(() => {
-    fetchAPI();
+    fetchNotes();
   }, []);
 
   return (

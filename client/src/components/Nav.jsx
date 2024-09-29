@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Nav({ setArray, array, setSelectedNote, note }) {
+function Nav({ setArray, array, setSelectedNote, note, fetchNotes }) {
   // creating notes states
 
   const onNew = async () => {
@@ -8,7 +8,7 @@ function Nav({ setArray, array, setSelectedNote, note }) {
     const response = await fetch("http://localhost:8080/api/notes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "", content: "" }),
+      body: JSON.stringify({ name: "", content: "", pinned: false }),
     })
 
     if (!response.ok) {
@@ -30,7 +30,9 @@ function Nav({ setArray, array, setSelectedNote, note }) {
       body: JSON.stringify({ pinned: newPinnedValue }),
     });
     const data = await response.json();
-    console.log()
+    console.log(data)
+    fetchNotes();
+    setSelectedNote(null)
   }
 
   return (

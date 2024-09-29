@@ -45,15 +45,15 @@ app.get('/api/notes', (req, res) => {
 // add new created notes to database
 app.post('/api/notes', (req, res) => {
     console.log(req.body);
-    const { name, content } = req.body;
-    const sql = `INSERT INTO quote (name, content) VALUES (?, ?)`;
-    const params = [name, content];
+    const { name, content, pinned } = req.body;
+    const sql = `INSERT INTO quote (name, content, pinned) VALUES (?, ?, ?)`;
+    const params = [name, content, pinned];
     db.run(sql, params, function(err) {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
         res.json({
-            data: { ID: this.lastID, name, content }
+            data: { ID: this.lastID, name, content, pinned }
         });
     });
 });
@@ -103,7 +103,6 @@ app.put('/api/notes/:id', (req, res) => {
 });
 
 // Pin note
-
 app.put('/api/notes/pin/:id', (req, res) => {
     const { id } = req.params; // Extract the ID from the request URL
     const { pinned } = req.body; // Extract name and content from the request body
