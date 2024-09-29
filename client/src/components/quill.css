@@ -1,0 +1,36 @@
+.ql-container {
+  border: none !important;
+  font-family: Inter, sans-serif;
+}
+
+.ql-toolbar {
+  border: none !important;
+  background-color: gray;
+  width: auto;
+}
+
+.ql-toolbar button {
+  color: #333 !important;
+}
+
+
+/* Customize the editor area */
+.ql-editor {
+  min-height: calc(100vh - 170px);
+  /* 100px is the height of the header/footer combined */
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  /* Enable vertical scrolling if content overflows */
+  font-size: 16px;
+  line-height: 1.6;
+  border: none !important;
+}
+
+/* Example for customizing text styling */
+.ql-editor h1 {
+  font-size: 24px;
+}
+
+.ql-editor p {
+  margin-bottom: 10px;
+}

@@ -3,6 +3,7 @@ import Nav from "./components/Nav"
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import './App.css'
+import './components/quill.css'
 
 
 function App() {

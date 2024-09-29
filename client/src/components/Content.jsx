@@ -64,7 +64,7 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
   }, []);
 
   return (
-    <div className="p-10">
+    <div className="">
       {note ? (
         <div className="flex flex-col max-w-full">
           {/* Controlled textarea for the name */}
@@ -75,7 +75,9 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
               setIsTyping(true);
             }}
             style={{ resize: "none" }}
-            className="text-3xl mb-5 font-bold break-words bg-transparent"
+            className="text-2xl font-bold break-words bg-transparent mt-5 ml-4 mb-5"
+            rows="1"
+            placeholder="Title here..."
             value={name}
           ></textarea>
 
