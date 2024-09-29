@@ -102,6 +102,32 @@ app.put('/api/notes/:id', (req, res) => {
     });
 });
 
+// Pin note
+
+app.put('/api/notes/pin/:id', (req, res) => {
+    const { id } = req.params; // Extract the ID from the request URL
+    const { pinned } = req.body; // Extract name and content from the request body
+
+    const sql = `UPDATE quote SET pinned = ? WHERE ID = ?`;
+    const params = [pinned, id];
+
+    db.run(sql, params, function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+
+        // Check if any row was updated
+        if (this.changes === 0) {
+            return res.status(404).json({ error: "Note not found" });
+        }
+
+        // Respond with the updated note data
+        res.json({
+            data: { ID: id, pinned }
+        });
+    });
+});
+
 app.listen(8080, () => {
     console.log("server running on port 8080")
 });

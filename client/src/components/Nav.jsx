@@ -24,7 +24,7 @@ function Nav({ setArray, array, setSelectedNote, note }) {
 
   const onPin = async (currentPinned) => {
     const newPinnedValue = !currentPinned;
-    const response = await fetch(`http://localhost:8080/api/notes/${note.ID}`, {
+    const response = await fetch(`http://localhost:8080/api/notes/pin/${note.ID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ pinned: newPinnedValue }),
