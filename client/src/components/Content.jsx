@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 
 function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
 
@@ -76,17 +79,15 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
             value={name}
           ></textarea>
 
-          <textarea
-            onChange={(e) => {
-              const updatedContent = e.target.value;
+          <ReactQuill
+            theme="snow"
+            value={content}
+            onChange={(updatedContent) => {
               setContent(updatedContent);
               setIsTyping(true);
             }}
-            style={{ resize: "none" }}
-            rows="25"
             className="break-words bg-transparent"
-            value={content}
-          ></textarea>
+          ></ReactQuill>
         </div>
       ) : (
         <div>Please select a note to display.</div>
