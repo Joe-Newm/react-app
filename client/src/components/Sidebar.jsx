@@ -27,7 +27,8 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
         {
 
           array.map((note, index) => (
-            <UserCard key={note.ID} noteName={note.name} onClick={() => onNoteClick(note)} isSelected={selectedNote && selectedNote.ID === note.ID} onDel={() => handleDel(note)} />
+            note.name == null ? "" :
+              <UserCard key={note.ID} noteName={note.name} onClick={() => onNoteClick(note)} isSelected={selectedNote && selectedNote.ID === note.ID} onDel={() => handleDel(note)} />
           ))
         }
       </div>
