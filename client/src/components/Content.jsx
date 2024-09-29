@@ -75,7 +75,7 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
               setIsTyping(true);
             }}
             style={{ resize: "none" }}
-            className="text-2xl font-bold break-words bg-transparent mt-5 ml-4 mb-5"
+            className="text-2xl font-bold break-words bg-transparent mt-5 ml-4 mb-5 focus:outline-none"
             rows="1"
             placeholder="Title here..."
             value={name}
@@ -83,7 +83,8 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
 
           <ReactQuill
             theme="snow"
-            value={content}
+            placeholder="Content here.."
+            value={content || ""}
             onChange={(updatedContent) => {
               setContent(updatedContent);
               setIsTyping(true);
@@ -92,7 +93,7 @@ function Content({ note, setSelectedNote, array, setArray, fetchNotes }) {
           ></ReactQuill>
         </div>
       ) : (
-        <div>Please select a note to display.</div>
+        <div className="m-4">Please select a note to display.</div>
       )
       }
     </div >

@@ -3,6 +3,11 @@
   font-family: Inter, sans-serif;
 }
 
+.ql-editor:focus {
+  outline: none !important;
+}
+
+
 .ql-toolbar {
   border: none !important;
   background-color: #1C1E28;
