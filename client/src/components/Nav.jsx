@@ -14,6 +14,8 @@ function Nav({ setArray, array, setSelectedNote, note, fetchNotes }) {
       setArray((prevArray) => prevArray.filter(n => n.ID !== note.ID))
       console.log(`note with id: ${note.ID} deleted successfully`)
 
+      setSelectedNote(null)
+
     } catch (error) {
       console.error(error.message)
     }
