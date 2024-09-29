@@ -24,7 +24,8 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
   return (
     <div className=" bg-[#1C1E28] border-r border-r-black min-h-screen ">
       <div className="flex flex-col ">
-        <div className="h-10 bg-[#55697E] text-black font-bold text-center content-center border-b border-[#1C1E28]"><p className="filter brightness-0 text-black">📌 Pinned Notes</p></div>
+        {array.some(note => note.pinned == 1) && (
+          <div className="h-10 bg-[#55697E] text-black font-bold text-center content-center border-b border-[#1C1E28]"><p className="filter brightness-0 text-black">📌 Pinned Notes</p></div>)}
         {
           array.map((note, index) => (
             note.name == null ? note.name = "" :
@@ -33,8 +34,8 @@ function Sidebar({ onNoteClick, selectedNote, array, setArray }) {
                 <UserCard key={note.ID} noteName={note.name} onClick={() => onNoteClick(note)} isSelected={selectedNote && selectedNote.ID === note.ID} onDel={() => handleDel(note)} />
           ))
         }
-
-        <div className="h-10 bg-[#55697E] text-black font-bold text-center content-center border-b border-[#1C1E28]"><p className="filter brightness-0 text-black">✏️  Notes</p></div>
+        {array.some(note => note.pinned == 0) && (
+          <div className="h-10 bg-[#55697E] text-black font-bold text-center content-center border-b border-[#1C1E28]"><p className="filter brightness-0 text-black">✏️  Notes</p></div>)}
         {
           array.map((note, index) => (
             note.name == null ? note.name = "" :
